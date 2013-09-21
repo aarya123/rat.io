@@ -8,6 +8,11 @@
     border-radius: 5px;
     border-width: 5px;
     border-style: solid;
+    border-color: #C0C0C0;
+}
+#keywords:focus {
+    outline: 0;
+    border-color: #989898;
 }
 
 #submit {
