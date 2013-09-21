@@ -1,6 +1,6 @@
 <?php
 include "AlchInt.php";
-$values=explode(" ",$_GET['keywords']);
+$values=explode(" ",$_GET['q']);
 $results= json_decode(file_get_contents("http://www.nhtsa.gov/webapi/api/SafetyRatings/modelyear/".$values[2]."/make/".$values[0]."/model/".$values[1]."?format=json"))->{"Results"};
 $IDs=array();
 for ($x=0; $x<sizeof($results); $x++)
