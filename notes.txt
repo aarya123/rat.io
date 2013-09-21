@@ -2,3 +2,4 @@ Alchemy API Key: f3320e80d4cb912bc1e789c94b07a4471d992ddf
 
 Ebay Shopping API [reviews]: http://developer.shopping.com/docs/Getting_Started
 QuarkRank API [product features]: http://www.quarkrank.com/api
+http://www.yelp.com/developers/documentation/v2/business
