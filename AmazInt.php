@@ -38,7 +38,7 @@ try {
         for ($x=0; $x<count($array['Item'])-1; $x++) {
             $outputAlch = $AlchemyObj->URLGetTextSentiment("http://www.amazon.com/review/product/".$array['Item'][$x]['ASIN'], AlchemyAPI::JSON_OUTPUT_MODE);
             $output = json_decode($outputAlch, true);
-            $score = $score.$output['docSentiment']['score'];
+            $score += $output['docSentiment']['score'];
             //print_r($output);
         }
         $totalScore = $score / count($array['Item']);
