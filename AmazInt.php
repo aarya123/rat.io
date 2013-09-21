@@ -45,7 +45,7 @@ try {
         //print_r("Total Score: ".$totalScore);
         echo $totalScore;
     } else {
-        echo "No results found."
+        echo null;
     }
     
 }
