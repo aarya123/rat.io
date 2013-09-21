@@ -1,0 +1,19 @@
+#keywords {
+    display: block;
+    position: fixed;
+    left: 25%;
+    top: 40%;
+    width: 50%;
+    height: 5%;
+    border-radius: 5px;
+    border-width: 5px;
+    border-style: solid;
+}
+
+#submit {
+    display: block;
+    position: fixed;
+    left: 40%;
+    top: 50%;
+    width: 20%;
+}
