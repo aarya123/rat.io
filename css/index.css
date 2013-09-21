@@ -12,7 +12,7 @@ body {
     border-radius: 17px;
     border-width: 5px;
     border-style: solid;
-    border-color: #989898;
+    border-color: rgba(100, 100, 100, 0.5);
     font-size: 2em;
     font-family: arial;
     text-align: center;
@@ -32,7 +32,7 @@ h1 {
 
 #keywords:focus {
     outline: 0;
-    border-color: #989898;
+    border-color: rgba(100, 100, 100, 0.8);
 }
 #keywords::-webkit-input-placeholder {
     text-align: center;
