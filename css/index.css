@@ -9,10 +9,18 @@
     border-width: 5px;
     border-style: solid;
     border-color: #C0C0C0;
+    text-align: center;
 }
+
 #keywords:focus {
     outline: 0;
     border-color: #989898;
+}
+#keywords::-webkit-input-placeholder {
+    text-align: center;
+}
+#keywords:focus::-webkit-input-placeholder {
+    color: transparent;
 }
 
 #submit {
@@ -21,4 +29,9 @@
     left: 40%;
     top: 50%;
     width: 20%;
+    height: 3%;
+    border-radius: 5px;
+    border-width: 2px;;
+    border-style: solid;
+    border-color: #00CCFF;
 }
