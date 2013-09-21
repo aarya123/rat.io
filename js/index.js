@@ -25,14 +25,24 @@ submit.onclick=function(e) {
             if(req.status == 200) {
                 console.log(req.responseText);
                 var score = JSON.parse(req.responseText)["score"];
-                var color;
+                var color, borderColor;
                 if(score < 0) {
                     color = "rgba(0, 0, 255, " + -score + ")";
+                    borderColor = "rgba(0, 0, 255, " + -(score - 0.2) + ")";
                 }
                 else {
                     color = "rgba(255, 0, 0, " + score + ")";
+                    borderColor = "rgba(255, 0, 0, " + (score + 0.2) + ")";
                 }
                 body.style.backgroundColor = color;
+                submit.style.borderColor = borderColor;
+                keywords.onfocus = function() {
+                    keywords.style.borderColor = "";
+                }
+                keywords.onblur = function() {
+                    keywords.style.borderColor = borderColor;
+                }
+                keywords.style.borderColor = borderColor;
                 score *= 100;
                 score /= 20;
                 score = Math.floor(score);

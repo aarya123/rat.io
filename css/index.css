@@ -2,7 +2,7 @@
     display: block;
     position: fixed;
     left: 25%;
-    top: 30%;
+    top: 40%;
     width: 50%;
     border-radius: 5px;
     border-width: 5px;
@@ -28,13 +28,12 @@
     display: block;
     position: fixed;
     left: 40%;
-    top: 40%;
+    top: 50%;
     width: 20%;
     margin-top: 2%;
     border-radius: 5px;
     border-width: 2px;;
     border-style: solid;
-    border-color: #00CCFF;
     font-family: arial;
     font-size: 1.5em;
 }
@@ -43,7 +42,7 @@
     display: none;
     position: fixed;
     left: 46%;
-    top: 60%;
+    top: 70%;
 }
 
 #desc {
@@ -51,7 +50,7 @@
     position: fixed;
     width: 100%;
     text-align: center;
-    top: 60%;
+    top: 70%;
     font-family: arial;
     font-size: 2em;
 }
