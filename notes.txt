@@ -18,3 +18,14 @@ Amazon Shopping API [reviews]:
 [api operations] http://docs.aws.amazon.com/AWSECommerceService/latest/DG/CHAP_OperationListAlphabetical.html
 [api reviews outline] http://docs.aws.amazon.com/AWSECommerceService/latest/DG/RG_Reviews.html
 [api review implementation example] http://docs.aws.amazon.com/AWSECommerceService/latest/DG/CHAP_MotivatingCustomerstoBuy.html#GettingCustomerReviews
+
+USA Today Keys:
+
+[articles]: tnpbg32cfdf633uvkeg7nsqs
+[best selling books]: ukr82mh4b26m3ahczmjhhu64
+[book reviews]: k6xkktnyyfesa6ncs6xf4us4
+[breaking news]: ve3tjvv4j4td3ht8zckpbzva
+[census]: a7vcsjvzhsyvau724zu6sw52
+[movie reviews]: jta2kestq9rncr8ztg3gshph
+[music reviews]: 2j5nmzvmd9s3dm7ut5d4rnxn
+
