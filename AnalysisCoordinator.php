@@ -13,16 +13,23 @@ $options = array("-shopping" => "getAmazonScore",
 $myFuncs = array();
 $myKeywords = array();
 foreach($queryArr as $token) {
-    if(array_key_exists($token, $options)) {
-        array_push($myFuncs, $options[$token]);
+    $tokenArr = explode(" ", $token);
+    $cleanTokenArr = array();
+    foreach($tokenArr as $subToken) {
+        if(array_key_exists($subToken, $options)) {
+            array_push($myFuncs, $options[$subToken]);
+        }
+        else {
+            array_push($cleanTokenArr, $subToken);
+        }
     }
-    else {
-        array_push($myKeywords, $token);
-    }
+    array_push($myKeywords, implode(" ", $cleanTokenArr));
 }
 if(sizeof($myFuncs) == 0) {
     array_push($myFuncs, "getGoogleSearchScore");
 }
+var_dump($myKeywords);
+var_dump($myFuncs);
 $result = 0;
 foreach($myFuncs as $func) {
     foreach($myKeywords as $keyword) {
