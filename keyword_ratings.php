@@ -11,6 +11,7 @@
     }
     echo(json_encode(array("score" => $sentimentSum / min(10, sizeof($searchResults["items"])))));
     */
+    sleep(2);
     $isNeg = mt_rand(0, 1) == 0;
     $val = mt_rand() / mt_getrandmax();
     echo $isNeg ? -$val : $val;
