@@ -45,7 +45,12 @@ submit.onclick=function(e) {
                 console.log(req.responseText);
                 var score = Number(req.responseText);
                 var color, borderColor;
-                if(score < 0) {
+                if(score == 2) {
+                    desc.innerHTML = "You have been rate limited";
+                    color = "rgba(225, 225, 225, 1)";
+                    borderColor = "rgba(125, 125, 125, 0.5)";
+                }
+                else if(score < 0) {
                     color = "rgba(0, 0, 225, " + -(score / 2) + ")";
                     borderColor = "rgba(0, 0, 225, " + -(score - 0.2) + ")";
                 }
@@ -75,12 +80,14 @@ submit.onclick=function(e) {
                 submit.onmouseout = function() {
                     submit.style.borderColor = invisibleColor;
                 }
-                score *= 100;
-                score /= 20;
-                score = Math.floor(score);
-                score += 5;
-                desc.innerHTML = values[score];
-                desc.classList.add("active");
+                if(score >= -1 && score <= 1) {
+                    score *= 100;
+                    score /= 20;
+                    score = Math.floor(score);
+                    score += 5;
+                    desc.innerHTML = values[score];
+                    desc.classList.add("active");
+                }
             }
             else {
                 alert("issue");
