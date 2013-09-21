@@ -1,6 +1,24 @@
 var submit = document.getElementById("submit");
 var keywords = document.getElementById("keywords");
-var spinner = document.getElementById("spinner");
+var opts = {
+  lines: 13, // The number of lines to draw
+  length: 21, // The length of each line
+  width: 11, // The line thickness
+  radius: 34, // The radius of the inner circle
+  corners: 1, // Corner roundness (0..1)
+  rotate: 4, // The rotation offset
+  direction: 1, // 1: clockwise, -1: counterclockwise
+  color: '#000', // #rgb or #rrggbb or array of colors
+  speed: 1.1, // Rounds per second
+  trail: 42, // Afterglow percentage
+  shadow: false, // Whether to render a shadow
+  hwaccel: false, // Whether to use hardware acceleration
+  className: 'spinner', // The CSS class to assign to the spinner
+  zIndex: 2e9, // The z-index (defaults to 2000000000)
+  top: '0px', // Top position relative to parent in px
+  left: 'auto' // Left position relative to parent in px
+};
+var spinner = new Spinner(opts);
 var body = document.body;
 var desc = document.getElementById("desc");
 var values = ["The internet hates you and your keywords",
@@ -18,22 +36,24 @@ var invisibleColor = "rgba(0, 0, 0, 0)";
 submit.onclick=function(e) {
     var req = new XMLHttpRequest();
     req.open("GET", "keyword_ratings.php?q=" + encodeURIComponent(keywords.value));
-    spinner.classList.add("active");
-    desc.classList.remove("active");
+    desc.innerHTML = "";
+    spinner.spin(desc);
     req.onreadystatechange = function() {
 		if(req.readyState == 4) {
             if(req.status == 200) {
+                spinner.stop();
                 console.log(req.responseText);
                 var score = Number(req.responseText);
                 var color, borderColor;
                 if(score < 0) {
-                    color = "rgba(0, 0, 150, " + -score + ")";
-                    borderColor = "rgba(0, 0, 150, " + -(score - 0.4) + ")";
+                    color = "rgba(0, 0, 225, " + -(score / 2) + ")";
+                    borderColor = "rgba(0, 0, 225, " + -(score - 0.2) + ")";
                 }
                 else {
-                    color = "rgba(150, 0, 0, " + score + ")";
-                    borderColor = "rgba(150, 0, 0, " + (score + 0.4) + ")";
+                    color = "rgba(225, 0, 0, " + (score / 2) + ")";
+                    borderColor = "rgba(225, 0, 0, " + (score + 0.2) + ")";
                 }
+                
                 body.style.backgroundColor = color;
                 submit.style.borderColor = invisibleColor;
                 keywords.style.borderColor = invisibleColor;
@@ -65,7 +85,6 @@ submit.onclick=function(e) {
             else {
                 alert("issue");
             }
-            spinner.classList.remove("active");
 		}
 	}
 	req.send();
