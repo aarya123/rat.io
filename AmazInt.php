@@ -6,5 +6,5 @@ $AmzazonECS = new AmazonECS(
 	/*$country*/ 		'com', 
 	/*$associateTag*/ 	'ratio0b-20'
 );
-$result=$AmzazonECS.search("Test");
+$result=$AmzazonECS.sec;
 echo $result;
