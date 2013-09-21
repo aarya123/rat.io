@@ -13,7 +13,7 @@ try {
     $amazonEcs = new AmazonECS(ACCESS_KEY, SECRET_KEY, 'com', ASSOCIATE_TAG);
     $amazonEcs->associateTag(ASSOCIATE_TAG);
     
-    $result = $amazonEcs->category('All')->responseGroup('Small')->search($_GET["keywords"]);
+    $result = $amazonEcs->category('All')->responseGroup('Small')->search($_GET["q"]);
     $json = json_encode($result);
     $array = json_decode($json, true)['Items'];
     
