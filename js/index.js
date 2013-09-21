@@ -35,7 +35,14 @@ var values = ["The internet hates you and your keywords",
 var invisibleColor = "rgba(0, 0, 0, 0)";
 submit.onclick=function(e) {
     var req = new XMLHttpRequest();
-    req.open("GET", "keyword_ratings.php?q=" + encodeURIComponent(keywords.value));
+    if(keywords.value.indexOf("-social")!=-1)
+        req.open("GET", "TweetInt.php?q=" + encodeURIComponent(keywords.value));
+    else if(keywords.value.indexOf("-shopping")!=-1)
+        req.open("GET", "AmazInt.php?q=" + encodeURIComponent(keywords.value));
+    else if(keywords.value.indexOf("-places")!=-1)
+        req.open("GET", "GoogleReviews.php?q=" + encodeURIComponent(keywords.value));
+    else
+        req.open("GET", "keyword_ratings.php?q=" + encodeURIComponent(keywords.value));
     desc.innerHTML = "";
     spinner.spin(desc);
     req.onreadystatechange = function() {
