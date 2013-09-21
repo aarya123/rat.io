@@ -6,5 +6,14 @@ http://www.yelp.com/developers/documentation/v2/business
 http://developer.yahoo.com/search/local/V3/localSearch.html
 http://automotive.hearst.com/docs/blackbook/used_car_service/Used_Vehicle_Lookup_By_Drilldown
 https://developers.google.com/places/documentation/details
-Amazon Shopping API [reviews]: http://aws.amazon.com/code/Product%20Advertising%20API?_encoding=UTF8&jiveRedirect=1
 http://developer.cnet.com/docs/reference_guide
+
+
+Amazon Shopping API [reviews]: 
+
+[api resources list] http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/GSG/Welcome.html#RelatedResources
+[setting up amazon shopping api] http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/GSG/GettingSetUp.html
+[product list] http://aws.amazon.com/code/Product%20Advertising%20API?_encoding=UTF8&jiveRedirect=1
+[api operations] http://docs.aws.amazon.com/AWSECommerceService/latest/DG/CHAP_OperationListAlphabetical.html
+[api reviews outline] http://docs.aws.amazon.com/AWSECommerceService/latest/DG/RG_Reviews.html
+[api review implementation example] http://docs.aws.amazon.com/AWSECommerceService/latest/DG/CHAP_MotivatingCustomerstoBuy.html#GettingCustomerReviews
