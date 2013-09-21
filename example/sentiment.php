@@ -2,7 +2,7 @@
 
 
 // Load the AlchemyAPI module code.
-include "/module/AlchemyAPI.php";
+include "../module/AlchemyAPI.php";
 // Or load the AlchemyAPI PHP+CURL module.
 /*include "../module/AlchemyAPI_CURL.php";*/
 
