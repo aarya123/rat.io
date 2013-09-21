@@ -25,7 +25,8 @@ try {
         for ($x=0; $x<count($array['Item'])-1; $x++) {
             $asin = $array['Item'][$x]['ASIN'];
             //print_r($asin."<br>");
-            $output = $output."http://www.amazon.com/review/product/".$asin."<br
+            $output = $output."http://www.amazon.com/review/product/".$asin."<br>";
+        }
     } else {
         $output = "No results found.";
     }
@@ -35,17 +36,16 @@ try {
     // Search Alchemy for Sentiment
     if (count($array['Item']) > 1) {
         $score = 0;
+        //print_r("<br>Items: ".count($array['Item']));
         for ($x=0; $x<count($array['Item'])-1; $x++) {
             $outputAlch = $AlchemyObj->URLGetTextSentiment("http://www.amazon.com/review/product/".$array['Item'][$x]['ASIN'], AlchemyAPI::JSON_OUTPUT_MODE);
             $output = json_decode($outputAlch, true);
             $score += $output['docSentiment']['score'];
-            //print_r($output);
+            //print_r("<br>".$output['docSentiment']['score']);
         }
         $totalScore = $score / count($array['Item']);
-        //print_r("Total Score: ".$totalScore);
+        //print_r("<br>Total Score: ".$totalScore);
         echo $totalScore;
-    } else {
-        echo null;
     }
     
 }
