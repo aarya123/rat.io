@@ -38,6 +38,6 @@ function getGoogleReviewScore($query) {
     if($count!=0)
         return ($score/$count)*5;
     else
-        return 0;
+        return 2;
 }
 ?>
