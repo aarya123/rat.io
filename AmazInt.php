@@ -18,7 +18,7 @@ function getAmazonScore($query) {
         $array = json_decode($json, true)['Items'];
         
         // Search Alchemy for Sentiment
-        if (count($array['Item']) > 1) {
+        if (count($array['Item']) > 0) {
             $score = 0;
             for ($x=0; $x<count($array['Item'])-1; $x++) {
                 $outputAlch = $AlchemyObj->URLGetTextSentiment("http://www.amazon.com/review/product/".$array['Item'][$x]['ASIN'], AlchemyAPI::JSON_OUTPUT_MODE);
@@ -28,10 +28,10 @@ function getAmazonScore($query) {
             $totalScore = $score / count($array['Item']);
             return $totalScore * 5;
         } else {
-            return null;
+            return 2;
         }
     }
     catch(Exception $e) {
-      return $e->getMessage();
+      return 2;
     }
 }
