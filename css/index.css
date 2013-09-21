@@ -1,25 +1,33 @@
+body {
+    width: 100%;
+    overflow: hidden;
+}
+
+#container {
+    margin-top: 10%;
+}
+
 #keywords {
     display: block;
-    position: fixed;
-    left: 25%;
-    top: 40%;
-    width: 50%;
-    border-radius: 20px;
+    border-radius: 17px;
     border-width: 5px;
     border-style: solid;
-    border-color: #FFFFFF;
-    text-align: center;
+    border-color: #989898;
     font-size: 2em;
     font-family: arial;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 h1 {
-    position: fixed;
-    top: 0%;
-    font-size: 5em;
+    font-size: 4em;
     font-family: arial;
+    padding: 0px;
+    margin: 0px;
     text-align: center;
-    width: 100%;
 }
 
 #keywords:focus {
@@ -35,35 +43,19 @@ h1 {
 
 #submit {
     display: block;
-    position: fixed;
-    left: 40%;
-    top: 50%;
-    width: 20%;
-    margin-top: 2%;
     border-radius: 5px;
     border-width: 2px;;
     border-style: solid;
     font-family: arial;
     font-size: 1.5em;
-}
-
-#spinner {
-    display: none;
-    position: fixed;
-    left: 46%;
-    top: 70%;
+    text-align: center;
+    margin: 0 auto;
+    width: 20%;
 }
 
 #desc {
-    display: none;
-    position: fixed;
-    width: 100%;
-    text-align: center;
-    top: 70%;
     font-family: arial;
     font-size: 2em;
-}
-
-#desc.active, #spinner.active {
+    text-align: center;
     display: block;
 }

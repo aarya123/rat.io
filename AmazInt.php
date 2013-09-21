@@ -45,7 +45,7 @@ try {
         }
         $totalScore = $score / count($array['Item']);
         //print_r("<br>Total Score: ".$totalScore);
-        echo $totalScore;
+        echo $totalScore * 5;
     }
     
 }
