@@ -2,7 +2,7 @@
     display: block;
     position: fixed;
     left: 25%;
-    top: 40%;
+    top: 30%;
     width: 50%;
     border-radius: 5px;
     border-width: 5px;
@@ -28,7 +28,7 @@
     display: block;
     position: fixed;
     left: 40%;
-    top: 50%;
+    top: 40%;
     width: 20%;
     margin-top: 2%;
     border-radius: 5px;
@@ -43,7 +43,7 @@
     display: none;
     position: fixed;
     left: 46%;
-    top: 70%;
+    top: 60%;
 }
 
 #desc {
@@ -51,7 +51,7 @@
     position: fixed;
     width: 100%;
     text-align: center;
-    top: 70%;
+    top: 60%;
     font-family: arial;
     font-size: 2em;
 }
