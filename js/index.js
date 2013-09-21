@@ -14,8 +14,8 @@ var values = ["The internet hates you and your keywords",
 "The internet has butterflies in its stomach when your keywords appear",
 "The internet would love to have coffee with your keywords",
 "The internet wants to put up ads for your keywords for free"];
+var invisibleColor = "rgba(0, 0, 0, 0)";
 submit.onclick=function(e) {
-    console.log(e);
     var req = new XMLHttpRequest();
     req.open("GET", "keyword_ratings.php?q=" + encodeURIComponent(keywords.value));
     spinner.classList.add("active");
@@ -24,25 +24,37 @@ submit.onclick=function(e) {
 		if(req.readyState == 4) {
             if(req.status == 200) {
                 console.log(req.responseText);
-                var score = JSON.parse(req.responseText)["score"];
+                var score = Number(req.responseText);
                 var color, borderColor;
                 if(score < 0) {
-                    color = "rgba(0, 0, 255, " + -score + ")";
-                    borderColor = "rgba(0, 0, 255, " + -(score - 0.2) + ")";
+                    color = "rgba(0, 0, 150, " + -score + ")";
+                    borderColor = "rgba(0, 0, 150, " + -(score - 0.4) + ")";
                 }
                 else {
-                    color = "rgba(255, 0, 0, " + score + ")";
-                    borderColor = "rgba(255, 0, 0, " + (score + 0.2) + ")";
+                    color = "rgba(150, 0, 0, " + score + ")";
+                    borderColor = "rgba(150, 0, 0, " + (score + 0.4) + ")";
                 }
                 body.style.backgroundColor = color;
-                submit.style.borderColor = borderColor;
-                keywords.onfocus = function() {
-                    keywords.style.borderColor = "";
+                submit.style.borderColor = invisibleColor;
+                keywords.style.borderColor = invisibleColor;
+                if(document.querySelector("#submit:hover")) {
+                    submit.style.borderColor = borderColor;
                 }
-                keywords.onblur = function() {
+                else if(document.activeElement == keywords) {
                     keywords.style.borderColor = borderColor;
                 }
-                keywords.style.borderColor = borderColor;
+                keywords.onfocus = function() {
+                    keywords.style.borderColor = borderColor;
+                }
+                keywords.onblur = function() {
+                    keywords.style.borderColor = invisibleColor;
+                }
+                submit.onmouseover = function() {
+                    submit.style.borderColor = borderColor;
+                }
+                submit.onmouseout = function() {
+                    submit.style.borderColor = invisibleColor;
+                }
                 score *= 100;
                 score /= 20;
                 score = Math.floor(score);
@@ -57,4 +69,9 @@ submit.onclick=function(e) {
 		}
 	}
 	req.send();
+}
+keywords.onkeydown = function(e) {
+    if(e.keyCode == 13) {
+        submit.click();
+    }
 }

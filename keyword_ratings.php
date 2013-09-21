@@ -13,7 +13,7 @@
     */
     $isNeg = mt_rand(0, 1) == 0;
     $val = mt_rand() / mt_getrandmax();
-    echo json_encode(array("score" => $isNeg ? -$val : $val));
+    echo $isNeg ? -$val : $val;
     /*
     $maxKeywords = array(array("relevance" => 0));
     const maxSize = 5;

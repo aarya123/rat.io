@@ -4,13 +4,22 @@
     left: 25%;
     top: 40%;
     width: 50%;
-    border-radius: 5px;
+    border-radius: 20px;
     border-width: 5px;
     border-style: solid;
-    border-color: #C0C0C0;
+    border-color: #FFFFFF;
     text-align: center;
     font-size: 2em;
     font-family: arial;
+}
+
+h1 {
+    position: fixed;
+    top: 0%;
+    font-size: 5em;
+    font-family: arial;
+    text-align: center;
+    width: 100%;
 }
 
 #keywords:focus {
