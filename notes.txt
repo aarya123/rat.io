@@ -6,3 +6,4 @@ http://www.yelp.com/developers/documentation/v2/business
 http://developer.yahoo.com/search/local/V3/localSearch.html
 http://automotive.hearst.com/docs/blackbook/used_car_service/Used_Vehicle_Lookup_By_Drilldown
 https://developers.google.com/places/documentation/details
+Amazon Shopping API [reviews]: http://aws.amazon.com/code/Product%20Advertising%20API?_encoding=UTF8&jiveRedirect=1
