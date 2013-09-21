@@ -4,7 +4,7 @@ include "AmazInt.php";
 include "GoogleSearch.php";
 include "TweetInt.php";
 include "NewsInt.php";
-$queryArr = array_unique(explode(" ", $_GET["q"]));
+$queryArr = array_unique(explode(",", $_GET["q"]));
 $options = array("-shopping" => "getAmazonScore",
     "-places" => "getGoogleReviewScore",
     "-search" => "getGoogleSearchScore",
