@@ -44,6 +44,8 @@ try {
         $totalScore = $score / count($array['Item']);
         //print_r("Total Score: ".$totalScore);
         echo $totalScore;
+    } else {
+        echo "No results found."
     }
     
 }
