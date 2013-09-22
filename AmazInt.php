@@ -1,6 +1,7 @@
 <?php
 
 require 'lib/AmazonECS.class.php';
+include('lib.php');
 
 const ACCESS_KEY = 'AKIAJGDUYZ22LGVKPFAA';
 const SECRET_KEY = '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';
@@ -28,28 +29,9 @@ function getAmazonScore($query) {
             }
             
             $average = $score / count($array['Item']);
-            $count = count($scores);
-            sort($scores);
-            $median = $scores[$count / 2];
-            $lower = $scores[$count / 4];
-            $upper = $scores[3*$count / 4];
             
-            $iqr = $upper - $lower;
-            $lowerF = $lower - 1.5*$iqr;
-            $upperF = $upper + 1.5*$iqr;
             
-            $newTotal = 0;
-            $count = 0;
-            foreach($scores as $i => $val) {
-                if($val >= $lowerF && $val <= $upperF) {
-                    $newTotal+=$val;
-                    $count++;
-                }
-            }
-            
-            $newAverage = $newTotal / $count;
-            
-            return $newAverage;
+            return calcScore($scores);
         } else {
             return 2;
         }
