@@ -34,7 +34,7 @@ var values = ["The internet hates you and your keywords",
 var invisibleColor = "rgba(0, 0, 0, 0)";
 //var chart;
 //addEventListener('load',function(e){chart = document.getElementById('chartDiv');});
-function drawChart(array) {
+function drawChart(array,bgcolor) {
     var ourData = [];
     ourData[0] = [];
     ourData[1] = [];
@@ -44,6 +44,7 @@ function drawChart(array) {
     
     var i=1;
     for(var key in array) {
+        ourData[i] = [];
         ourData[i][0] = key;
         ourData[i][1] = array[key];
         i++;
@@ -57,11 +58,19 @@ function drawChart(array) {
     
     console.log(ourData);
     var data = google.visualization.arrayToDataTable(ourData);
+    var formatter = new google.visualization.ColorFormat();
+   formatter.addRange(-1, 0, 'cyan', 'cyan');
+    formatter.addRange(1 , 0.001, 'red', 'red');
+    formatter.format(data, 1); // Apply formatter to second column
     var options = {
-      title: '',
+      height: "297",
+      width: "960",
+      title: 'Opinion Factor',
+      legend: 'none',
       hAxis: {title: 'Source', titleTextStyle: {color: 'red'}}
-    };
+    };//colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
     c.draw(data, options);
+    bContainer.style.display="block";
 }
 
 submit.onclick=function(e) {
@@ -101,6 +110,7 @@ submit.onclick=function(e) {
                     }
                     
                     body.style.backgroundColor = color;
+                    //bContainer.style.backgroundColor = "#FFFFFF";
                     //submit.style.borderColor = invisibleColor;
                     keywords.style.borderColor = "rbga(100,100,100,.1)";
                     if(document.querySelector("#submit:hover")) {
@@ -129,7 +139,7 @@ submit.onclick=function(e) {
                         desc.innerHTML = values[score];
                         desc.classList.add("active");
                     }
-                    drawChart(scores);
+                    drawChart(scores,color);
                 } else {
                     alert("issue");
                 }
