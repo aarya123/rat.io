@@ -23,8 +23,8 @@ function getAmazonScore($query) {
             for ($x=0; $x<count($array['Item'])-1; $x++) {
                 $outputAlch = $AlchemyObj->URLGetTextSentiment("http://www.amazon.com/review/product/".$array['Item'][$x]['ASIN'], AlchemyAPI::JSON_OUTPUT_MODE);
                 $output = json_decode($outputAlch, true);
-                $scores[x] = $output['docSentiment']['score'];
-                $score += $scores[x];
+                $scores[$x] = $output['docSentiment']['score'];
+                $score += $scores[$x];
             }
             
             $average = $score / count($array['Item']);
