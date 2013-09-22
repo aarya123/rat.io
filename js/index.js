@@ -107,7 +107,7 @@ submit.onclick=function(e) {
                         color = "rgba(225, 225, 225, 1)";
                         borderColor = "rgba(125, 125, 125, 0.5)";
                     }
-                    else if(score < 0) {
+                    else if(score > 0) {
                         color = "rgba(0, 0, 225, " + -(score / 2) + ")";
                         borderColor = "rgba(0, 0, 225, " + -(score - 0.2) + ")";
                     }
@@ -154,13 +154,14 @@ submit.onclick=function(e) {
                         document.getElementById('chartContainer').style.visibility = "hidden";
                     }
                 } else {
-                    alert("issue");
+                    desc.innerHTML = "Hmm, something went wrong..";
+                    spinner.stop();
                 }
     		}
         }
         req.send();
 	} else {
-	    message = "Please enter a keyword or phrase";
+	    desc.innerHTML = "Please enter a keyword or phrase";
 	}
 	
 }

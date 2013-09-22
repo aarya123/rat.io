@@ -13,6 +13,16 @@ body {
     background-color: white;
 }
 
+red {
+    color: red;
+    text-decoration: bold;
+}
+
+blue {
+    color: blue;
+    text-decoration: bold;
+}
+
 #chartContainer {
     display: hidden;
     position: relative;
