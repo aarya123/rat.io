@@ -1,34 +1,47 @@
 body {
     width: 100%;
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #bContainer {
-    display: none;
+    display: block;
     width: 100%;
-    height: 55vh;
+    height: 60vh;
     position: relative;
     vertical-align: middle;
+    background-color: white;
+}
+
+#chartContainer {
+    display: hidden;
+    position: relative;
+    width: 40%;
+    margin-left: 30%;
+    border-style: solid;
+    border-color: white;
+    border-width: 5px;
 }
 
 #chartDiv > * {
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: relative;
 }
 
 #chartDiv {
-    width: 60%;
-    height: 100%;
+    display: none;
     vertical-align: middle;
     left: 20%;
-    position: absolute;
+    position: relative;
 }
 
 #container {
     padding-top: 20vh;
-    height: 78vh;
+    height: 90vh;
+    width: 100%;
     position: relative;
+    
 }
  
 #line {
@@ -82,7 +95,6 @@ span.dot {
     border-color: rgba(100, 100, 100, 0.6);
 }
 
-
 #keywords:focus {
     outline: 0;
     border-color: rgba(100, 100, 100, 0.8);
@@ -116,4 +128,34 @@ span.dot {
     font-size: 2em;
     text-align: center;
     display: block;
+}
+
+#tbl_cont {
+    width: 84%;
+    margin-left: 11%;
+    position: relative;
+}
+
+#tbl {
+    float: left;
+    font-weight: bold;
+    display: block;
+    width: 28%;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-family: Georgia;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+#tbl2 {
+    float: left;
+    display: block;
+    width: 28%;
+    margin-left: 20px;
+    font-family: Georgia;
+    font-size: 0.9em;
+    text-align: left;
+    padding-top: 15px;
+    text-align: top;
 }

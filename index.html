@@ -2,9 +2,8 @@
 <head>
     <title>rat.io</title>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script>
-     google.load("visualization", "1", {packages:['corechart','table']});
-     </script>
+    <script type="text/javascript">Array.prototype.reduce = undefined;</script>
+    <script>google.load("visualization", "1", {'packages': ['corechart','table']});</script>
     <script src="//fgnass.github.io/spin.js/dist/spin.min.js" defer></script>
     <script src="js/index.js" defer></script>
     
@@ -15,20 +14,28 @@
         <h1 id="title">rat<span class="dot">.</span><span class="io">io</span></h1>
         <div id="line">
         
-        <div id="spinner"></div>
+            <div id="spinner"></div>
         
-        <input id="keywords" type="text" name="keywords" placeholder="Keywords" autocomplete="off">
+            <input id="keywords" type="text" name="keywords" placeholder="Keywords" autocomplete="off">
         
         </div>
         <button id="submit">Search</button>
         
+        <p id="desc"></p>
+        <div id="chartContainer">
+            <center><div id="chartDiv"></div></center>
+        </div>
+    </div>
         
-    <p id="desc"></p>
-    </div>
     <div id="bContainer">
-    <div id="chartDiv">
-    
-    </div>
+        <div id="tbl_cont">
+            <div id="tbl">Resourceful and Eye-Appealing</div>
+            <div id="tbl">Check the Mood of Your Keywords</div>
+            <div id="tbl">An Easy and Convenient Search</div>
+            <div id="tbl2">A simple, intuitive interface that masks a complex series of heuristics designed to measure internet love.<br><br><center>Red&nbsp=&nbspPositive<br>Blue&nbsp=&nbspNegative</center></div>
+            <div id="tbl2">Take an interesting look at the subtle and not so subtle opinions thousands of people share on the internet every day.</div>
+            <div id="tbl2">Narrow or broaden your search using a variety of built in functions designed with the user in mind.<br><br><center>You can use any of these combinations:<br>-shopping<br>-places&nbsp&nbsp-search<br>-social&nbsp&nbsp-news</center></div>
+        </div>
     </div>
 </body>
 
