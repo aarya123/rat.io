@@ -72,6 +72,7 @@ function drawChart(array,bgcolor) {
 submit.onclick=function(e) {
     if(keywords.value != "") {
         var req = new XMLHttpRequest();
+        document.getElementById('chartContainer').style.visibility = "hidden";
         req.open("GET", "AnalysisCoordinator.php?q=" + encodeURIComponent(keywords.value));
         desc.innerHTML = "";
         spinner.spin(spinDiv);
