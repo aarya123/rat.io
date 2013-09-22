@@ -36,17 +36,25 @@ var invisibleColor = "rgba(0, 0, 0, 0)";
 google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart);
 function drawChart(array) {
-    var data = google.visualization.arrayToDataTable([
-      ['Year', 'Sales', 'Expenses'],
-      ['2004',  1000,      400],
-    ]);
+    var ourData = {};
+    ourData[0] = {};
+    ourData[1] = {};
+    
+    var i=0;
+    for(var key in array) {
+        ourData[0][i] = key;
+        ourData[1][i] = array[key];
+        i++;
+    }
+    var data = google.visualization.arrayToDataTable(ourData);
     var options = {
-      title: 'Company Performance',
-      hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
+      title: '',
+      hAxis: {title: 'Source', titleTextStyle: {color: 'red'}}
     };
-    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    var chart = new google.visualization.ColumnChart(document.getElementById('chartDiv'));
     chart.draw(data, options);
 }
+
 submit.onclick=function(e) {
     if(keywords.value != "") {
         var req = new XMLHttpRequest();
@@ -59,13 +67,14 @@ submit.onclick=function(e) {
                     spinner.stop();
                     console.log(req.responseText);
                     var scores = JSON.parse(req.responseText);
+                    drawData(scores);
                     var score = 0;
                     var count = 0;
                     for(var key in scores) {
                         //Use scores[key] as the value and key as the key
                         score += scores[key];
                         count++;
-
+                    }
                     score = score / count;
                     var color, borderColor;
                     if(score == 2) {
@@ -111,7 +120,6 @@ submit.onclick=function(e) {
                         desc.innerHTML = values[score];
                         desc.classList.add("active");
                     }
-                }
                 } else {
                     alert("issue");
                 }
