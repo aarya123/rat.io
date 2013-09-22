@@ -23,10 +23,33 @@ function getAmazonScore($query) {
             for ($x=0; $x<count($array['Item'])-1; $x++) {
                 $outputAlch = $AlchemyObj->URLGetTextSentiment("http://www.amazon.com/review/product/".$array['Item'][$x]['ASIN'], AlchemyAPI::JSON_OUTPUT_MODE);
                 $output = json_decode($outputAlch, true);
-                $score += $output['docSentiment']['score'];
+                $scores[x] = $output['docSentiment']['score'];
+                $score += $scores[x];
             }
-            $totalScore = $score / count($array['Item']);
-            return $totalScore * 5;
+            $average = $score / count($array['Item']);
+            sort($scores);
+            $median = $scores[$count / 2];
+            $lower = $scores[$count / 4];
+            $upper = $scores[3*$count / 4];
+            
+            $iqr = $upper - $lower;
+            $lowerF = $lower - 1.5*$iqr;
+            $upperF = $upper + 1.5*$iqr;
+            
+            $newTotal = 0;
+            $count = 0;
+            foreach($scores as $i => $val) {
+                if($val >= $lowerF && $val <= $upperF) {
+                    $newTotal+=$val;
+                    $count++;
+                }
+            }
+            
+            $newAverage = $newTotal / $count;
+            echo $newAverage;
+            echo "<br>";
+            echo $average;
+            return $newAverage;
         } else {
             return 2;
         }
@@ -35,3 +58,7 @@ function getAmazonScore($query) {
       return 2;
     }
 }
+
+getAmazonScore("Bill");
+
+?>
