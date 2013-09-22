@@ -4,7 +4,12 @@ body {
 }
 
 #container {
-    margin-top: 10%;
+    margin-top: 12%;
+    height: 100vh;
+}
+
+#bottom {
+    
 }
 
 #keywords {
@@ -18,17 +23,33 @@ body {
     text-align: center;
     width: 80%;
     margin: 0 auto;
-    margin-top: 2%;
+    margin-top: 1%;
     margin-bottom: 2%;
 }
 
 h1 {
+    position: relative;
     font-size: 4em;
     font-family: arial;
     padding: 0px;
     margin: 0px;
     text-align: center;
 }
+
+span.io {
+    margin-left: -6px;
+    positon: relative;
+    left: -3px;
+}
+
+span.dot {
+    font-size: .65em;
+    color: rgba(0,0,0,.6);
+}
+#keywords:hover {
+    border-color: rgba(100, 100, 100, 0.6);
+}
+
 
 #keywords:focus {
     outline: 0;
@@ -42,6 +63,7 @@ h1 {
 }
 
 #submit {
+    border-color: rgb(209, 206, 206);
     display: block;
     border-radius: 5px;
     border-width: 2px;;
@@ -51,6 +73,10 @@ h1 {
     text-align: center;
     margin: 0 auto;
     width: 20%;
+}
+
+#submit:hover {
+    border-color: rgba(100, 100, 100, 0.8);
 }
 
 #desc {

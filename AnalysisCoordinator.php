@@ -28,8 +28,7 @@ foreach($queryArr as $token) {
 if(sizeof($myFuncs) == 0) {
     array_push($myFuncs, "getGoogleSearchScore");
 }
-var_dump($myKeywords);
-var_dump($myFuncs);
+$myFuncs =array_unique($myFuncs);
 $result = 0;
 foreach($myFuncs as $func) {
     foreach($myKeywords as $keyword) {
