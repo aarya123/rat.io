@@ -28,8 +28,6 @@ else {
     $myOptions = array_unique($myOptions);
 }
 $result = array();
-var_dump($myKeywords);
-var_dump($myOptions);
 foreach($myOptions as $option) {
     $result[$option] = call_user_func($options[$option], $myKeywords);
 }

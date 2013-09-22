@@ -10,7 +10,7 @@ function getAmazonScore($query) {
     try {
         // FETCH RESULTS FROM AWS
         include "AlchInt.php";
-        include('lib.php');
+        include_once 'lib.php';
         $amazonEcs = new AmazonECS(ACCESS_KEY, SECRET_KEY, 'com', ASSOCIATE_TAG);
         $amazonEcs->associateTag(ASSOCIATE_TAG);
         
