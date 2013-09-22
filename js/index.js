@@ -36,24 +36,33 @@ var invisibleColor = "rgba(0, 0, 0, 0)";
 //addEventListener('load',function(e){chart = document.getElementById('chartDiv');});
 function drawChart(array,bgcolor) {
     var ourData = [];
-    ourData[0] = [];
-    ourData[1] = [];
+    //ourData[0] = [];
+    //ourData[1] = [];
     
-    ourData[0][0] = "Source";
-    ourData[0][1] = "Opinion Factor"
+    //ourData[0][0] = "Source";
+    //ourData[0][1] = "Opinion Factor"
     
+    var chart = document.getElementById('chartDiv');
+    console.log("BREAK EVERYTHING??");
+   
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Source');
+    data.addColumn('number', 'Opinion Factor');
     var i=1;
     for(var key in array) {
         ourData[i] = [];
         ourData[i][0] = key;
         ourData[i][1] = array[key];
+        data.addRows([ourData[i]]);
         i++;
     }
-    var chart = document.getElementById('chartDiv');
-    console.log("BREAK EVERYTHING??");
-   
+    var table = new google.visualization.Table(document.getElementById('chartDiv'));
+    var formatter = new google.visualization.BarFormat({width: 120});
+    formatter.format(data, 1); // Apply formatter to second column
+  
+    table.draw(data, {allowHtml: true, showRowNumber: true});
     //setTimeout(function(){google.load('visualization', '1', {'callback':'alert("2 sec wait")', 'packages':['corechart']})}, 2000);
-    console.log(chart);
+    /*console.log(chart);
     var c = new google.visualization.ColumnChart(chart);
     
     console.log(ourData);
@@ -61,15 +70,16 @@ function drawChart(array,bgcolor) {
     var formatter = new google.visualization.ColorFormat();
    formatter.addRange(-1, 0, 'cyan', 'cyan');
     formatter.addRange(1 , 0.001, 'red', 'red');
-    formatter.format(data, 1); // Apply formatter to second column
+    formatter.format(data, 1); // Apply formatter to second column*/
     var options = {
-      height: "297",
-      width: "960",
-      title: 'Opinion Factor',
-      legend: 'none',
+      base: "0",
+      colorNegative: "cyan",
+      colorPositive: "red",
+      max: "1",
+      min: "-1",
       hAxis: {title: 'Source', titleTextStyle: {color: 'red'}}
     };//colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
-    c.draw(data, options);
+    //c.draw(data, options);
     bContainer.style.display="block";
 }
 
