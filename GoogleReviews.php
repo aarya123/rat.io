@@ -2,7 +2,22 @@
 function getGoogleReviewScore($query) {
     include "AlchInt.php";
     include 'lib.php';
-    $result=json_decode(file_get_contents("https://maps.googleapis.com/maps/api/place/textsearch/json?query=".urlencode($query)."&sensor=false&key=AIzaSyDs4lsfh1xT0F6xL_liNt6pPtvsp4rSd8g"),true)["results"];
+    $result=json_decode(
+        file_get_contents(
+            "https://maps.googleapis.com/maps/api/place/textsearch/json?query="
+            .urlencode($query)
+            ."&sensor=false&key=AIzaSyDs4lsfh1xT0F6xL_liNt6pPtvsp4rSd8g"
+        ),
+        true
+    )["results"];
+    $sentiments = array();
+    foreach($result as $loc) {
+        if(array_key_exists("rating", $loc)) {
+            array_push($sentiments, $loc["rating"] / 5);
+        }
+    }
+    return count($sentiments) > 0 ? scoreCalc($sentiments) : 2;
+    /*
     $IDs=array();
     if(sizeof($result)<5)
         for($x=0;$x<sizeof($result);$x++)
@@ -35,5 +50,6 @@ function getGoogleReviewScore($query) {
         }
     }
     return count($sentiments) > 0 ? scoreCalc($sentiments) : 2;
+    */
 }
 ?>
