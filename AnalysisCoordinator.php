@@ -4,38 +4,32 @@ include "AmazInt.php";
 include "GoogleSearch.php";
 include "TweetInt.php";
 include "NewsInt.php";
-$queryArr = array_unique(explode(",", $_GET["q"]));
+$queryArr = explode(" ", $_GET["q"]);
 $options = array("-shopping" => "getAmazonScore",
     "-places" => "getGoogleReviewScore",
     "-search" => "getGoogleSearchScore",
     "-social" => "getTwitterScore",
     "-news" => "getNewsScore");
-$myFuncs = array();
+$myOptions = array();
 $myKeywords = array();
 foreach($queryArr as $token) {
-    $tokenArr = explode(" ", $token);
-    $cleanTokenArr = array();
-    foreach($tokenArr as $subToken) {
-        if(array_key_exists($subToken, $options)) {
-            array_push($myFuncs, $options[$subToken]);
-        }
-        else {
-            array_push($cleanTokenArr, $subToken);
-        }
+    if(array_key_exists($token, $options)) {
+        array_push($myOptions, $token);
     }
-    array_push($myKeywords, implode(" ", $cleanTokenArr));
-}
-if(sizeof($myFuncs) == 0) {
-    array_push($myFuncs, "getGoogleSearchScore");
-}
-var_dump($myKeywords);
-var_dump($myFuncs);
-$result = 0;
-foreach($myFuncs as $func) {
-    foreach($myKeywords as $keyword) {
-        $result += call_user_func($func, $keyword);
+    else {
+        array_push($myKeywords, $token);
     }
 }
-//echo $AlchemyObj->TextGetTextSentiment(file_get_contents("http://autoapi.hearst.com/v1/UsedCarWS/UsedCarWS/UsedVehicle/2010/Ford?model=F150&series=XLT&style=Supercab%204WD&api_key=r9rkc5jq8gk64w7zahhs6ed6"));
-echo $result / (sizeof($myFuncs) * sizeof($myKeywords));
+$myKeywords = implode(" ", $myKeywords);
+if(sizeof($myOptions) == 0) {
+    array_push($myOptions, "-search");
+}
+else {
+    $myOptions = array_unique($myOptions);
+}
+$result = array();
+foreach($myOptions as $option) {
+    $result[$option] = call_user_func($options[$option], $myKeywords);
+}
+echo json_encode($result);
 ?>
