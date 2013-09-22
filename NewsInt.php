@@ -1,7 +1,7 @@
 <?php
 function getNewsScore($query) {
 	include 'AlchInt.php';
-	include('lib.php');
+	include_once('lib.php');
 	$query = urlencode($query);
 	$searchResults = json_decode(file_get_contents("https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=$query"), true);
 	if($searchResults != null && array_key_exists("responseData", $searchResults)) {
