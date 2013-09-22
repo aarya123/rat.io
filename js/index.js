@@ -2,25 +2,26 @@ var submit = document.getElementById("submit");
 var keywords = document.getElementById("keywords");
 var opts = {
   lines: 13, // The number of lines to draw
-  length: 21, // The length of each line
-  width: 11, // The line thickness
-  radius: 34, // The radius of the inner circle
+  length: 5, // The length of each line
+  width: 2, // The line thickness
+  radius: 7, // The radius of the inner circle
   corners: 1, // Corner roundness (0..1)
   rotate: 4, // The rotation offset
   direction: 1, // 1: clockwise, -1: counterclockwise
   color: '#000', // #rgb or #rrggbb or array of colors
-  speed: 1.1, // Rounds per second
+  speed: 1.2, // Rounds per second
   trail: 42, // Afterglow percentage
   shadow: false, // Whether to render a shadow
   hwaccel: false, // Whether to use hardware acceleration
   className: 'spinner', // The CSS class to assign to the spinner
   zIndex: 2e9, // The z-index (defaults to 2000000000)
-  top: '0px', // Top position relative to parent in px
+  top: 'auto', // Top position relative to parent in px
   left: 'auto' // Left position relative to parent in px
 };
 var spinner = new Spinner(opts);
 var body = document.body;
 var desc = document.getElementById("desc");
+var spinDiv = document.getElementById("spinner");
 var values = ["The internet hates you and your keywords",
 "The internet strongly dislikes you and your keywords",
 "The internet would appreciate it if you changed your interests to not include those keywords",
@@ -38,13 +39,21 @@ submit.onclick=function(e) {
         var req = new XMLHttpRequest();
         req.open("GET", "AnalysisCoordinator.php?q=" + encodeURIComponent(keywords.value));
         desc.innerHTML = "";
-        spinner.spin(desc);
+        spinner.spin(spinDiv);
         req.onreadystatechange = function() {
     		if(req.readyState == 4) {
                 if(req.status == 200) {
                     spinner.stop();
                     console.log(req.responseText);
-                    var score = Number(req.responseText);
+                    var scores = JSON.parse(req.responseText);
+                    var score = 0;
+                    var count = 0;
+                    for(var key in scores) {
+                        //Use scores[key] as the value and key as the key
+                        score += scores[key];
+                        count++;
+                    }
+                    score = score / count;
                     var color, borderColor;
                     if(score == 2) {
                         desc.innerHTML = "You have been rate limited";
@@ -61,8 +70,8 @@ submit.onclick=function(e) {
                     }
                     
                     body.style.backgroundColor = color;
-                    submit.style.borderColor = invisibleColor;
-                    keywords.style.borderColor = invisibleColor;
+                    //submit.style.borderColor = invisibleColor;
+                    keywords.style.borderColor = "rbga(100,100,100,.1)";
                     if(document.querySelector("#submit:hover")) {
                         submit.style.borderColor = borderColor;
                     }
@@ -95,10 +104,11 @@ submit.onclick=function(e) {
                 }
     		}
         }
+        req.send();
 	} else {
-	    
+	    message = "Please enter a keyword or phrase";
 	}
-	req.send();
+	
 }
 keywords.onkeydown = function(e) {
     if(e.keyCode == 13) {

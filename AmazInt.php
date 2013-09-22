@@ -46,9 +46,7 @@ function getAmazonScore($query) {
             }
             
             $newAverage = $newTotal / $count;
-            echo $newAverage;
-            echo "<br>";
-            echo $average;
+            
             return $newAverage;
         } else {
             return 2;

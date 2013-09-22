@@ -12,7 +12,19 @@ body {
     
 }
 
+#line {
+   
+    position: relative;
+}
+
+#spinner {
+    position: absolute;
+    left: 0;
+    
+}
+
 #keywords {
+     text-align: center;
     display: block;
     border-radius: 17px;
     border-width: 5px;
@@ -20,7 +32,6 @@ body {
     border-color: rgba(100, 100, 100, 0.5);
     font-size: 2em;
     font-family: arial;
-    text-align: center;
     width: 80%;
     margin: 0 auto;
     margin-top: 1%;
@@ -59,7 +70,7 @@ span.dot {
     text-align: center;
 }
 #keywords:focus::-webkit-input-placeholder {
-    color: transparent;
+    color: transparent; 
 }
 
 #submit {
