@@ -1,7 +1,7 @@
 <?php
 function getGoogleReviewScore($query) {
     include "AlchInt.php";
-    include 'lib.php';
+    include_once 'lib.php';
     $result=json_decode(
         file_get_contents(
             "https://maps.googleapis.com/maps/api/place/textsearch/json?query="
