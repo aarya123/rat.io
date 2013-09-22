@@ -15,7 +15,6 @@ var opts = {
   hwaccel: false, // Whether to use hardware acceleration
   className: 'spinner', // The CSS class to assign to the spinner
   zIndex: 2e9 // The z-index (defaults to 2000000000)
-  
 };
 var spinner = new Spinner(opts);
 var body = document.body;
@@ -33,26 +32,36 @@ var values = ["The internet hates you and your keywords",
 "The internet would love to have coffee with your keywords",
 "The internet wants to put up ads for your keywords for free"];
 var invisibleColor = "rgba(0, 0, 0, 0)";
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart);
+//var chart;
+//addEventListener('load',function(e){chart = document.getElementById('chartDiv');});
 function drawChart(array) {
-    var ourData = {};
-    ourData[0] = {};
-    ourData[1] = {};
+    var ourData = [];
+    ourData[0] = [];
+    ourData[1] = [];
     
-    var i=0;
+    ourData[0][0] = "Source";
+    ourData[0][1] = "Opinion Factor"
+    
+    var i=1;
     for(var key in array) {
-        ourData[0][i] = key;
-        ourData[1][i] = array[key];
+        ourData[i][0] = key;
+        ourData[i][1] = array[key];
         i++;
     }
+    var chart = document.getElementById('chartDiv');
+    console.log("BREAK EVERYTHING??");
+   
+    //setTimeout(function(){google.load('visualization', '1', {'callback':'alert("2 sec wait")', 'packages':['corechart']})}, 2000);
+    console.log(chart);
+    var c = new google.visualization.ColumnChart(chart);
+    
+    console.log(ourData);
     var data = google.visualization.arrayToDataTable(ourData);
     var options = {
       title: '',
       hAxis: {title: 'Source', titleTextStyle: {color: 'red'}}
     };
-    var chart = new google.visualization.ColumnChart(document.getElementById('chartDiv'));
-    chart.draw(data, options);
+    c.draw(data, options);
 }
 
 submit.onclick=function(e) {
@@ -67,7 +76,7 @@ submit.onclick=function(e) {
                     spinner.stop();
                     console.log(req.responseText);
                     var scores = JSON.parse(req.responseText);
-                    drawData(scores);
+                    
                     var score = 0;
                     var count = 0;
                     for(var key in scores) {
@@ -120,6 +129,7 @@ submit.onclick=function(e) {
                         desc.innerHTML = values[score];
                         desc.classList.add("active");
                     }
+                    drawChart(scores);
                 } else {
                     alert("issue");
                 }

@@ -3,6 +3,13 @@ body {
     overflow: hidden;
 }
 
+#chartDiv {
+    width: 75%;
+    height: 50vh;
+    position: absolute;
+    bottom: 0;
+}
+
 #container {
     margin-top: 12%;
     height: 100vh;
