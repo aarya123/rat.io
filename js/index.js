@@ -84,15 +84,26 @@ submit.onclick=function(e) {
                     
                     var score = 0;
                     var count = 0;
+                    var isRateLimited = false;
                     for(var key in scores) {
                         //Use scores[key] as the value and key as the key
-                        score += scores[key];
-                        count++;
+                        if(scores[key] != 2) {
+                            score += scores[key];
+                            count++;
+                        }
+                        else {
+                            isRateLimited = key;
+                            break;
+                        }
                     }
-                    score = score / count;
-                    var color, borderColor;
-                    if(score == 2) {
-                        desc.innerHTML = "You have been rate limited";
+                    if(!isRateLimited) {
+                        score = score / count;
+                    }
+                    else {
+                        score = 2;
+                    }
+                    if(isRateLimited) {
+                        desc.innerHTML = "You have been rate limited on " + isRateLimited;
                         color = "rgba(225, 225, 225, 1)";
                         borderColor = "rgba(125, 125, 125, 0.5)";
                     }
@@ -135,7 +146,13 @@ submit.onclick=function(e) {
                         desc.innerHTML = values[score];
                         desc.classList.add("active");
                     }
-                    drawChart(scores,color);
+                    if(!isRateLimited) {
+                        document.getElementById('chartContainer').style.visibility = "visible";
+                        drawChart(scores,color);
+                    }
+                    else {
+                        document.getElementById('chartContainer').style.visibility = "hidden";
+                    }
                 } else {
                     alert("issue");
                 }

@@ -6,14 +6,23 @@ function getGoogleReviewScore($query) {
         file_get_contents(
             "https://maps.googleapis.com/maps/api/place/textsearch/json?query="
             .urlencode($query)
-            ."&sensor=false&key=AIzaSyDs4lsfh1xT0F6xL_liNt6pPtvsp4rSd8g"
+            ."&sensor=false&key=AIzaSyAqy2OnDc_LQU-JZfoBytrOmm10RnOpAlM"
         ),
         true
-    )["results"];
+    );
+    if($result != null && array_key_exists("results", $result)) {
+        $result = $result["results"];
+    }
+    else {
+        return 2;
+    }
     $sentiments = array();
     foreach($result as $loc) {
         if(array_key_exists("rating", $loc)) {
             array_push($sentiments, $loc["rating"] / 5);
+        }
+        else {
+            array_push($sentiments, 0);
         }
     }
     return count($sentiments) > 0 ? scoreCalc($sentiments) : 2;
