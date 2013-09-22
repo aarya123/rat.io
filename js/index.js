@@ -108,15 +108,17 @@ submit.onclick=function(e) {
                         borderColor = "rgba(125, 125, 125, 0.5)";
                     }
                     else if(score > 0) {
-                        color = "rgba(0, 0, 225, " + -(score / 2) + ")";
-                        borderColor = "rgba(0, 0, 225, " + -(score - 0.2) + ")";
+                        color = "rgba(0, 0, 225, " + (score/2) + ")";
+                        borderColor = "rgba(0, 0, 225, " + (score+0.2) + ")";
+                        console.log(color);
                     }
                     else {
-                        color = "rgba(225, 0, 0, " + (score / 2) + ")";
-                        borderColor = "rgba(225, 0, 0, " + (score + 0.2) + ")";
+                        color = "rgba(225, 0, 0, " + -(score / 2) + ")";
+                        borderColor = "rgba(225, 0, 0, " + -(score + 0.2) + ")";
                     }
-                    
+                    console.log(color);
                     body.style.backgroundColor = color;
+                    console.log(color);
                     //bContainer.style.backgroundColor = "#FFFFFF";
                     //submit.style.borderColor = invisibleColor;
                     keywords.style.borderColor = "rbga(100,100,100,.1)";
