@@ -26,8 +26,9 @@ function getAmazonScore($query) {
                 $scores[x] = $output['docSentiment']['score'];
                 $score += $scores[x];
             }
-            $count = count($scores);
+            
             $average = $score / count($array['Item']);
+            $count = count($scores);
             sort($scores);
             $median = $scores[$count / 2];
             $lower = $scores[$count / 4];
