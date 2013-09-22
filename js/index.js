@@ -33,6 +33,20 @@ var values = ["The internet hates you and your keywords",
 "The internet would love to have coffee with your keywords",
 "The internet wants to put up ads for your keywords for free"];
 var invisibleColor = "rgba(0, 0, 0, 0)";
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+function drawChart(array) {
+    var data = google.visualization.arrayToDataTable([
+      ['Year', 'Sales', 'Expenses'],
+      ['2004',  1000,      400],
+    ]);
+    var options = {
+      title: 'Company Performance',
+      hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
 submit.onclick=function(e) {
     if(keywords.value != "") {
         var req = new XMLHttpRequest();
