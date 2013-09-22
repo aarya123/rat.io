@@ -15,7 +15,6 @@ var opts = {
   hwaccel: false, // Whether to use hardware acceleration
   className: 'spinner', // The CSS class to assign to the spinner
   zIndex: 2e9 // The z-index (defaults to 2000000000)
-  
 };
 var spinner = new Spinner(opts);
 var body = document.body;
@@ -33,20 +32,47 @@ var values = ["The internet hates you and your keywords",
 "The internet would love to have coffee with your keywords",
 "The internet wants to put up ads for your keywords for free"];
 var invisibleColor = "rgba(0, 0, 0, 0)";
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart);
-function drawChart(array) {
-    var data = google.visualization.arrayToDataTable([
-      ['Year', 'Sales', 'Expenses'],
-      ['2004',  1000,      400],
-    ]);
+//var chart;
+//addEventListener('load',function(e){chart = document.getElementById('chartDiv');});
+function drawChart(array,bgcolor) {
+    var ourData = [];
+    ourData[0] = [];
+    ourData[1] = [];
+    
+    ourData[0][0] = "Source";
+    ourData[0][1] = "Opinion Factor"
+    
+    var i=1;
+    for(var key in array) {
+        ourData[i] = [];
+        ourData[i][0] = key;
+        ourData[i][1] = array[key];
+        i++;
+    }
+    var chart = document.getElementById('chartDiv');
+    console.log("BREAK EVERYTHING??");
+   
+    //setTimeout(function(){google.load('visualization', '1', {'callback':'alert("2 sec wait")', 'packages':['corechart']})}, 2000);
+    console.log(chart);
+    var c = new google.visualization.ColumnChart(chart);
+    
+    console.log(ourData);
+    var data = google.visualization.arrayToDataTable(ourData);
+    var formatter = new google.visualization.ColorFormat();
+   formatter.addRange(-1, 0, 'cyan', 'cyan');
+    formatter.addRange(1 , 0.001, 'red', 'red');
+    formatter.format(data, 1); // Apply formatter to second column
     var options = {
-      title: 'Company Performance',
-      hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
-    };
-    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
+      height: "297",
+      width: "960",
+      title: 'Opinion Factor',
+      legend: 'none',
+      hAxis: {title: 'Source', titleTextStyle: {color: 'red'}}
+    };//colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+    c.draw(data, options);
+    bContainer.style.display="block";
 }
+
 submit.onclick=function(e) {
     if(keywords.value != "") {
         var req = new XMLHttpRequest();
@@ -59,13 +85,14 @@ submit.onclick=function(e) {
                     spinner.stop();
                     console.log(req.responseText);
                     var scores = JSON.parse(req.responseText);
+                    
                     var score = 0;
                     var count = 0;
                     for(var key in scores) {
                         //Use scores[key] as the value and key as the key
                         score += scores[key];
                         count++;
-
+                    }
                     score = score / count;
                     var color, borderColor;
                     if(score == 2) {
@@ -83,6 +110,7 @@ submit.onclick=function(e) {
                     }
                     
                     body.style.backgroundColor = color;
+                    //bContainer.style.backgroundColor = "#FFFFFF";
                     //submit.style.borderColor = invisibleColor;
                     keywords.style.borderColor = "rbga(100,100,100,.1)";
                     if(document.querySelector("#submit:hover")) {
@@ -111,7 +139,7 @@ submit.onclick=function(e) {
                         desc.innerHTML = values[score];
                         desc.classList.add("active");
                     }
-                }
+                    drawChart(scores,color);
                 } else {
                     alert("issue");
                 }

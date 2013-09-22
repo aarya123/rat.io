@@ -3,15 +3,34 @@ body {
     overflow: hidden;
 }
 
+#bContainer {
+    display: none;
+    width: 100%;
+    height: 55vh;
+    position: relative;
+    vertical-align: middle;
+}
+
+#chartDiv > * {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#chartDiv {
+    width: 60%;
+    height: 100%;
+    vertical-align: middle;
+    left: 20%;
+    position: absolute;
+}
+
 #container {
-    margin-top: 12%;
-    height: 100vh;
+    padding-top: 20vh;
+    height: 78vh;
+    position: relative;
 }
-
-#bottom {
-    
-}
-
+ 
 #line {
     width: 80%;
     position: relative; 
@@ -25,7 +44,8 @@ body {
 }
 
 #keywords {
-     text-align: center;
+    
+    text-align: center;
     display: block;
     border-radius: 17px;
     border-width: 5px;

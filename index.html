@@ -1,9 +1,13 @@
 <!DOCTYPE HTML>
 <head>
     <title>rat.io</title>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+     google.load("visualization", "1", {packages:["corechart"]});
+     </script>
     <script src="//fgnass.github.io/spin.js/dist/spin.min.js" defer></script>
     <script src="js/index.js" defer></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    
     <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
@@ -21,6 +25,10 @@
         
     <p id="desc"></p>
     </div>
-   
+    <div id="bContainer">
+    <div id="chartDiv">
+    
+    </div>
+    </div>
 </body>
 
