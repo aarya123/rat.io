@@ -1,6 +1,7 @@
 <?php
     function getGoogleSearchScore($query) {
         include "AlchInt.php";
+        include "lib.php";
         $query = urlencode($query);
         $searchResults = json_decode(file_get_contents("http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=$query"), true);
         if($searchResults != null && array_key_exists("responseData", $searchResults)) {
@@ -24,14 +25,7 @@
                 catch(Exception $e) {
                 }
             }
-            sort($sentiments);
-            $size = sizeof($sentiments);
-            if($size % 2 == 0) {
-                return $sentiments[$size / 2];
-            }
-            else {
-                return ($sentiments[$size / 2] + $sentiments[($size / 2) + 1]) / 2;
-            }
+            return scoreCalc($sentiments);
         }
         else {
             return 0;

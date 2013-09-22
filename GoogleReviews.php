@@ -1,6 +1,7 @@
 <?php
 function getGoogleReviewScore($query) {
     include "AlchInt.php";
+    include 'lib.php';
     $result=json_decode(file_get_contents("https://maps.googleapis.com/maps/api/place/textsearch/json?query=".urlencode($query)."&sensor=false&key=AIzaSyDs4lsfh1xT0F6xL_liNt6pPtvsp4rSd8g"),true)["results"];
     $IDs=array();
     if(sizeof($result)<5)
@@ -9,8 +10,7 @@ function getGoogleReviewScore($query) {
     else
         for($x=0;$x<5;$x++)
             $IDs[$x]=$result[$x]["reference"];
-    $score=0;
-    $count=0;
+    $sentiments = array();
     for($x=0;$x<sizeof($IDs);$x++)
     {
         $reviews=json_decode(file_get_contents("https://maps.googleapis.com/maps/api/place/details/json?reference=".$IDs[$x]."&sensor=true&key=AIzaSyDs4lsfh1xT0F6xL_liNt6pPtvsp4rSd8g"),true)["result"];
@@ -26,8 +26,7 @@ function getGoogleReviewScore($query) {
                 $output = json_decode($outputAlch, true);
                 if(isset($output['docSentiment']['score']))
                 {
-                    $score += $output['docSentiment']['score'];
-                    $count++;
+                    array_push($sentiments, $output['docSentiment']['score']);
                 }
             }
             catch(Exception $e){
@@ -35,9 +34,6 @@ function getGoogleReviewScore($query) {
             }
         }
     }
-    if($count!=0)
-        return ($score/$count)*5;
-    else
-        return 2;
+    return count($sentiments) > 0 ? scoreCalc($sentiments) : 2;
 }
 ?>
