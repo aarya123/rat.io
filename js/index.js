@@ -14,9 +14,8 @@ var opts = {
   shadow: false, // Whether to render a shadow
   hwaccel: false, // Whether to use hardware acceleration
   className: 'spinner', // The CSS class to assign to the spinner
-  zIndex: 2e9, // The z-index (defaults to 2000000000)
-  top: 'auto', // Top position relative to parent in px
-  left: 'auto' // Left position relative to parent in px
+  zIndex: 2e9 // The z-index (defaults to 2000000000)
+  
 };
 var spinner = new Spinner(opts);
 var body = document.body;
@@ -52,7 +51,7 @@ submit.onclick=function(e) {
                         //Use scores[key] as the value and key as the key
                         score += scores[key];
                         count++;
-                    }
+
                     score = score / count;
                     var color, borderColor;
                     if(score == 2) {
@@ -99,7 +98,7 @@ submit.onclick=function(e) {
                         desc.classList.add("active");
                     }
                 }
-                else {
+                } else {
                     alert("issue");
                 }
     		}
