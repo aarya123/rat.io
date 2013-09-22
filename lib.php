@@ -1,6 +1,9 @@
 <?php
 function scoreCalc($scores) {
     $count = count($scores);
+    if($count == 0) {
+        return 2;
+    }
     sort($scores);
     $median = $scores[$count / 2];
     $lower = $scores[$count / 4];
