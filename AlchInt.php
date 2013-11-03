@@ -1,5 +1,5 @@
 <?php
 include_once "module/AlchemyAPI.php";
 $AlchemyObj = new AlchemyAPI();
-$AlchemyObj->setAPIKey("2094dd01fd7cbceb7e1bb916840e40e81f25d16f");
+$AlchemyObj->setAPIKey("f3320e80d4cb912bc1e789c94b07a4471d992ddf");
 ?>
